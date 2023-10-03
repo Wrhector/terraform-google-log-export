@@ -18,13 +18,13 @@ terraform {
   required_version = ">= 0.13"
   required_providers {
 
-    google = {
+    google-beta = {
       source  = "hashicorp/google"
       version = ">= 4.40, < 5.0"
     }
   }
 
-  provider_meta "google" {
+  provider_meta "google-beta" {
     module_name = "blueprints/terraform/terraform-google-log-export:storage/v7.6.0"
   }
 
