@@ -23,6 +23,7 @@ locals {
 # API activation #
 #----------------#
 resource "google_project_service" "enable_destination_api" {
+provider    = google-beta
   project            = var.project_id
   service            = "storage-component.googleapis.com"
   disable_on_destroy = false
@@ -32,6 +33,7 @@ resource "google_project_service" "enable_destination_api" {
 # Storage bucket #
 #----------------#
 resource "google_storage_bucket" "bucket" {
+provider    = google-beta
   name                        = var.storage_bucket_name
   project                     = google_project_service.enable_destination_api.project
   storage_class               = var.storage_class
@@ -89,6 +91,7 @@ resource "google_storage_bucket" "bucket" {
 # Service account IAM membership #
 #--------------------------------#
 resource "google_storage_bucket_iam_member" "storage_sink_member" {
+provider    = google-beta
   bucket = local.storage_bucket_name
   role   = "roles/storage.objectCreator"
   member = var.log_sink_writer_identity
